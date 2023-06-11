@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>User Page</title>
+</h:head>
+<h:body>
+    <h1>User Information</h1>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        <ui:repeat value="#{userBean.userList}" var="user">
+            <tr>
+                <td>#{user.userID}</td>
+                <td>#{user.username}</td>
+                <td>#{user.email}</td>
+                <td>
+                    <h:form>
+                        <h:commandButton value="More Information" action="#{userBean.viewUser(user)}" />
+                        <h:commandButton value="Delete User" action="#{userBean.deleteUser(user)}" />
+                    </h:form>
+                </td>
+            </tr>
+        </ui:repeat>
+    </table>
+</h:body>
+</html>
