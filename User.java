@@ -35,14 +35,45 @@ public  class User
     public String  getUsername(){
         return username;
     }
+    private String getPassword(){
+        return password;
+    }
 
     
     //Θέτει το όνομα 
     public void setUsername(String newUsername){
-        this.username=newUsername;
+        this.username = newUsername;
+    }
+
+    private void setPassword(String newPassword){
+        this.password = newPassword;
+    }
+
+    public boolean changeUsername(String newUsername){
+        boolean notExist = checkUsername(newUsername);
+        if(notExist==true){
+            setUsername(newUsername);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean changePassword(String newPassword1, String newPassword2){
+        String oldPassword = getPassword();
+        if(oldPassword.matches(newPassword1)){
+            return false;
+        }else{
+            if(checkPasswordMatch(newPassword1, newPassword2)){
+                setPassword(newPassword1);
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
     
-    //Ελέγχει αν υπάρχει user με αυτό το email και τον επιστρέφει
+    //Ελέγχει αν υπάρχει user με αυτό το email 
     public boolean checkEmail(String email){
         User oldUser = null;
         for (User user: Marketplace.users)
